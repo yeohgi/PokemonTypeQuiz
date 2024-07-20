@@ -1,0 +1,271 @@
+<html lang="en">
+    <head>
+        <title>Type Quiz By Yogi</title>
+        <link rel="icon" type="image/png" href="https://www.pokencyclopedia.info/sprites/misc/spr_substitute/art__substitute.png">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script>
+
+            mono = true;
+            cycleMode = false;
+            cycle = 0;
+
+            correctAnwsers = 0;
+            anwserSize = 0;
+
+            types = ["Normal", "Fire", "Water", "Electric", "Grass", 
+                     "Ice", "Fighting", "Poison", "Ground", "Flying", 
+                     "Psychic", "Bug", "Rock", "Ghost", "Dragon", 
+                     "Dark", "Steel", "Fairy"]
+
+            key =   []
+
+            function askQuestion(){
+
+                var url = "getquestion";
+
+                if(cycleMode){
+                    var url = "cycle." + String(cycle) + ".getquestion";
+                    cycle = cycle + 1;
+                }
+
+                if(mono){
+                    var url = "mono." + url;
+                }else{
+                    var url = "dual." + url;
+                }
+
+                console.log(url)
+                
+                $.get(url, function(data) {
+
+                    console.log(data)
+
+                    $("#question").text("What is super effective aganist? ")
+
+                    if(mono){
+                        $("#question").append('<img class="questionimg whiteimgoutline" style="margin-right: 10px; vertical-align: middle;" src="https://play.pokemonshowdown.com/sprites/types/' + data[0] + '.png" alt="???">')
+                    }else{
+                        $("#question").append('<img class="questionimg whiteimgoutline" style="margin-right: 10px; vertical-align: middle;" src="https://play.pokemonshowdown.com/sprites/types/' + data[0][0] + '.png" alt="???">')
+                        $("#question").append('<img class="questionimg whiteimgoutline" style="margin-right: 10px; vertical-align: middle;" src="https://play.pokemonshowdown.com/sprites/types/' + data[0][1] + '.png" alt="???">')
+                    }
+                    
+
+                    anwserSize = data[1].length
+                    $("#progress").text("("+ correctAnwsers + "/" + anwserSize + ")")
+
+                    key = data[1]
+
+                });
+
+                $('#types').empty();
+                correctAnwsers = 0;
+                for(var i = 0; i < types.length; i++){
+                    console.log(types[i])
+                    $("#types").append('<img id="' + types[i].toLowerCase() + '" class="typeimg whiteimgoutline" style="margin-right: 10px; margin-bottom: 10px;" src="https://play.pokemonshowdown.com/sprites/types/' + types[i] + '.png" alt="???" onclick="guess(&quot;' + types[i] + '&quot;)">')
+                }
+
+            }
+
+            function guess(type){
+
+                console.log("guessing:", type)
+
+                console.log(type, key)
+
+                if (key.includes(type)) {
+                    correct = true;
+                    key = key.filter(arb => arb !== type);
+                }else{
+                    correct = false;
+                }
+
+                updateType(type.toLowerCase(), correct)
+
+                if(key.length == 0){
+                    askQuestion()
+                }
+
+            }
+
+            function updateType(type, correct){
+
+                console.log("changing", type, correct)
+
+                $(type).removeClass('whiteimgoutline')
+
+                if(correct){
+                    $("#" + type).addClass('greenimgoutline');
+
+                    correctAnwsers = correctAnwsers + 1;
+                    $("#progress").text("("+ correctAnwsers + "/" + anwserSize + ")")
+                    
+                }else if(!$("#" + type).hasClass('greenimgoutline')){
+                    $("#" + type).addClass('redimgoutline');
+                }
+            }
+
+            function changeQuestionType(){
+                if(mono){
+                    mono = false
+                    $("#dualbutton").text("Dual Types: On")
+                }else{
+                    mono = true
+                    $("#dualbutton").text("Dual Types: Off")
+                }
+            }
+
+            function toggleCycle(){
+                if(cycleMode){
+                    cycleMode = false;
+                    $("#cyclebutton").text("Cycle Mode: Off")
+                }else{
+                    cycleMode = true;
+                    $("#cyclebutton").text("Cycle Mode: On")
+                }
+            }
+
+        </script>
+        <style>
+
+            body{
+                margin: 0;
+                margin-left: 35vw;
+                margin-right: 35vw;
+                color: white;
+                font-family: Arial, sans-serif;
+                font-size: 18px;
+                background: #424B54;
+            }
+
+            .divc{
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+            }
+
+            .typeimg {
+                width: 72px;
+                height: auto;
+                margin-bottom: 24px;
+                margin-right: 24px;
+            }
+
+            .questionimg {
+                width: 48px;
+                height: auto;
+            }
+
+            .whiteimgoutline {
+
+                filter: drop-shadow(1px 1px 0 white) 
+                        drop-shadow(-1px -1px 0 white)
+                        drop-shadow(1px -1px 0 white)
+                        drop-shadow(-1px 1px 0 white);
+
+            }
+
+            .greenimgoutline {
+
+                filter: drop-shadow(2px 2px 0 rgb(0, 255, 0))
+                        drop-shadow(-2px -2px 0 rgb(0, 255, 0))
+                        drop-shadow(2px -2px 0 rgb(0, 255, 0))
+                        drop-shadow(-2px 2px 0 rgb(0, 255, 0));
+
+            }
+
+            .redimgoutline {
+
+                filter: drop-shadow(2px 2px 0 red) 
+                        drop-shadow(-2px -2px 0 red)
+                        drop-shadow(2px -2px 0 red)
+                        drop-shadow(-2px 2px 0 red);
+
+            }
+
+            .graybg {
+                background-color: #2b3036;
+                border-width: 2px;
+                border-color: #dfdfdf;
+                border-style: solid;
+                border-radius: 3px;
+            }
+
+            @media only screen and (max-width: 1000px) {
+
+                body {
+                    margin: 0;
+                    margin-left: 10vw;
+                    margin-right: 10vw;
+                    color: white;
+                    font-family: Arial, sans-serif;
+                    font-size: 18px;
+                    background: #424B54;
+                }
+
+                .typeimg {
+                    width: 256px;
+                    height: auto;
+                }
+
+                .divc{
+                    margin-left: auto;
+                    margin-right: auto;
+                    text-align: center;
+                }
+
+                .mobilebutton{
+                    height: 10vh;
+                    width: 40vw;
+                    font-size: 72;
+                    border-radius: 50px;
+                }
+
+                .whiteimgoutline {
+
+                filter: drop-shadow(2px 2px 0 white) 
+                        drop-shadow(-2px -2px 0 white)
+                        drop-shadow(2px -2px 0 white)
+                        drop-shadow(-2px 2px 0 white);
+
+            }
+
+            .greenimgoutline {
+
+                filter: drop-shadow(2px 2px 0 rgb(0, 255, 0))
+                        drop-shadow(-2px -2px 0 rgb(0, 255, 0))
+                        drop-shadow(2px -2px 0 rgb(0, 255, 0))
+                        drop-shadow(-2px 2px 0 rgb(0, 255, 0));
+
+            }
+
+            .redimgoutline {
+
+                filter: drop-shadow(2px 2px 0 red) 
+                        drop-shadow(-2px -2px 0 red)
+                        drop-shadow(2px -2px 0 red)
+                        drop-shadow(-2px 2px 0 red);
+
+            }
+
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <div id="questiondiv" class="divc" style="margin-bottom: 24px; padding-top: 24px;">
+            <p style="display: inline;" id="question">A Type</p>
+            <p style="display: inline;" id="progress">(X/X)</p>
+        </div>
+
+        <div id="types" class="divc graybg" style="padding-top: 10px; margin-bottom: 24px;"></div>
+
+        <div class="divc"><button class="mobilebutton" id="dualbutton" onclick="changeQuestionType()">Dual Types: Off</button><button class="mobilebutton" id="cyclebutton" onclick="toggleCycle()">Cycle Mode: Off</button></div>
+
+        <div class="divc" onclick="askQuestion()"><button class="mobilebutton">Ask Me!</button></div>
+        
+    </body>
+
+</html>
