@@ -61,7 +61,7 @@
                 correctAnwsers = 0;
                 for(var i = 0; i < types.length; i++){
                     console.log(types[i])
-                    $("#types").append('<img id="' + types[i].toLowerCase() + '" class="typeimg whiteimgoutline" style="margin-right: 10px; margin-bottom: 10px;" src="https://play.pokemonshowdown.com/sprites/types/' + types[i] + '.png" alt="???" onclick="guess(&quot;' + types[i] + '&quot;)">')
+                    $("#types").append('<img id="' + types[i].toLowerCase() + '" class="typeimg whiteimgoutline" style="margin-bottom: 10px;" src="https://play.pokemonshowdown.com/sprites/types/' + types[i] + '.png" alt="???" onclick="guess(&quot;' + types[i] + '&quot;)">')
                 }
 
             }
@@ -148,7 +148,8 @@
                 width: 72px;
                 height: auto;
                 margin-bottom: 24px;
-                margin-right: 24px;
+                margin-left: 10px;
+                margin-right: 10px;
             }
 
             .questionimg {
@@ -206,6 +207,15 @@
                 .typeimg {
                     width: 256px;
                     height: auto;
+                    margin-left: 48px;
+                    margin-right: 48px;
+                }
+
+                .questionimg {
+                    width: 144px;
+                    height: auto;
+                    margin-left: 12px;
+                    margin-right: 12px;
                 }
 
                 .divc{
@@ -216,9 +226,15 @@
 
                 .mobilebutton{
                     height: 10vh;
-                    width: 40vw;
-                    font-size: 72;
-                    border-radius: 50px;
+                    width: 35vw;
+                    font-size: 64;
+                    color: white;
+                    border-radius: 10px;
+                    border-color: white;
+                    border-width: 4px;
+                    background-color: #2b3036;
+                    margin-left: 24px;
+                    margin-right: 24px;
                 }
 
                 .whiteimgoutline {
@@ -232,24 +248,32 @@
 
                 .greenimgoutline {
 
-                    filter: drop-shadow(2px 2px 0 rgb(0, 255, 0))
-                            drop-shadow(-2px -2px 0 rgb(0, 255, 0))
-                            drop-shadow(2px -2px 0 rgb(0, 255, 0))
-                            drop-shadow(-2px 2px 0 rgb(0, 255, 0));
+                    filter: drop-shadow(4px 4px 0 rgb(0, 255, 0))
+                            drop-shadow(-4px -4px 0 rgb(0, 255, 0))
+                            drop-shadow(4px -4px 0 rgb(0, 255, 0))
+                            drop-shadow(-4px 4px 0 rgb(0, 255, 0));
 
                 }
 
                 .redimgoutline {
 
-                    filter: drop-shadow(2px 2px 0 red) 
-                            drop-shadow(-2px -2px 0 red)
-                            drop-shadow(2px -2px 0 red)
-                            drop-shadow(-2px 2px 0 red);
+                    filter: drop-shadow(4px 4px 0 red) 
+                            drop-shadow(-4px -4px 0 red)
+                            drop-shadow(4px -4px 0 red)
+                            drop-shadow(-4px 4px 0 red);
 
                 }
 
                 .question {
-                    font-size: 72px;
+                    font-size: 64px;
+                }
+
+                .graybg {
+                    background-color: #2b3036;
+                    border-width: 4px;
+                    border-color: #dfdfdf;
+                    border-style: solid;
+                    border-radius: 3px;
                 }
 
             }
@@ -262,12 +286,12 @@
 
         <div id="questiondiv" class="divc" style="margin-bottom: 24px; padding-top: 24px;">
             <p class="question" style="display: inline;" id="question">A Type</p>
-            <p style="display: inline;" id="progress">(X/X)</p>
+            <p class="question" style="display: inline;" id="progress">(X/X)</p>
         </div>
 
         <div id="types" class="divc graybg" style="padding-top: 10px; margin-bottom: 24px;"></div>
 
-        <div class="divc"><button class="mobilebutton" id="dualbutton" onclick="changeQuestionType()">Dual Types: Off</button><button class="mobilebutton" id="cyclebutton" onclick="toggleCycle()">Cycle Mode: Off</button></div>
+        <div class="divc" style="margin-bottom: 24px;"><button class="mobilebutton" id="dualbutton" onclick="changeQuestionType()">Dual Types: Off</button><button class="mobilebutton" id="cyclebutton" onclick="toggleCycle()">Cycle Mode: Off</button></div>
 
         <div class="divc" onclick="askQuestion()"><button class="mobilebutton">Ask Me!</button></div>
         
