@@ -43,10 +43,10 @@
                     $("#question").text("What is super effective aganist? ")
 
                     if(mono){
-                        $("#question").append('<img class="questionimg whiteimgoutline" style="margin-right: 10px; vertical-align: middle;" src="https://play.pokemonshowdown.com/sprites/types/' + data[0] + '.png" alt="???">')
+                        $("#question").append('<img class="questionimg whiteimgoutline" style="margin-right: 10px; vertical-align: middle;" src="https://pktypes.s3.amazonaws.com/' + data[0].toLowerCase() + '.png" alt="???">')
                     }else{
-                        $("#question").append('<img class="questionimg whiteimgoutline" style="margin-right: 10px; vertical-align: middle;" src="https://play.pokemonshowdown.com/sprites/types/' + data[0][0] + '.png" alt="???">')
-                        $("#question").append('<img class="questionimg whiteimgoutline" style="margin-right: 10px; vertical-align: middle;" src="https://play.pokemonshowdown.com/sprites/types/' + data[0][1] + '.png" alt="???">')
+                        $("#question").append('<img class="questionimg whiteimgoutline" style="margin-right: 10px; vertical-align: middle;" src="https://pktypes.s3.amazonaws.com/' + data[0][0].toLowerCase() + '.png" alt="???">')
+                        $("#question").append('<img class="questionimg whiteimgoutline" style="margin-right: 10px; vertical-align: middle;" src="https://pktypes.s3.amazonaws.com/' + data[0][1].toLowerCase() + '.png" alt="???">')
                     }
 
                     anwserSize = data[1].length
@@ -60,7 +60,7 @@
                 correctAnwsers = 0;
                 for(var i = 0; i < types.length; i++){
                     console.log(types[i])
-                    $("#types").append('<img id="' + types[i].toLowerCase() + '" class="typeimg whiteimgoutline" style="margin-bottom: 10px;" src="https://play.pokemonshowdown.com/sprites/types/' + types[i] + '.png" alt="???" onclick="guess(&quot;' + types[i] + '&quot;)">')
+                    $("#types").append('<img id="' + types[i].toLowerCase() + '" class="typeimg whiteimgoutline" style="margin-bottom: 10px;" src="https://pktypes.s3.amazonaws.com/' + types[i].toLowerCase() + '.png" alt="???" onclick="guess(&quot;' + types[i] + '&quot;)">')
                 }
 
             }
