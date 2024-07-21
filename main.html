@@ -48,7 +48,6 @@
                         $("#question").append('<img class="questionimg whiteimgoutline" style="margin-right: 10px; vertical-align: middle;" src="https://play.pokemonshowdown.com/sprites/types/' + data[0][0] + '.png" alt="???">')
                         $("#question").append('<img class="questionimg whiteimgoutline" style="margin-right: 10px; vertical-align: middle;" src="https://play.pokemonshowdown.com/sprites/types/' + data[0][1] + '.png" alt="???">')
                     }
-                    
 
                     anwserSize = data[1].length
                     $("#progress").text("("+ correctAnwsers + "/" + anwserSize + ")")
@@ -91,7 +90,7 @@
 
                 console.log("changing", type, correct)
 
-                $(type).removeClass('whiteimgoutline')
+                $("#" + type).removeClass('whiteimgoutline')
 
                 if(correct){
                     $("#" + type).addClass('greenimgoutline');
@@ -205,7 +204,7 @@
                 }
 
                 .typeimg {
-                    width: 256px;
+                    width: 224px;
                     height: auto;
                     margin-left: 48px;
                     margin-right: 48px;
@@ -225,9 +224,9 @@
                 }
 
                 .mobilebutton{
-                    height: 10vh;
+                    height: 8vh;
                     width: 35vw;
-                    font-size: 64;
+                    font-size: 56;
                     color: white;
                     border-radius: 10px;
                     border-color: white;
@@ -285,8 +284,8 @@
     <body>
 
         <div id="questiondiv" class="divc" style="margin-bottom: 24px; padding-top: 24px;">
-            <p class="question" style="display: inline;" id="question">A Type</p>
-            <p class="question" style="display: inline;" id="progress">(X/X)</p>
+            <p class="question" style="display: inline;" id="question">Welcome! Press "Ask Me!" to start!</p>
+            <p class="question" style="display: inline;" id="progress"></p>
         </div>
 
         <div id="types" class="divc graybg" style="padding-top: 10px; margin-bottom: 24px;"></div>
