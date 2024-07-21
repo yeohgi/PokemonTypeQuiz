@@ -112,6 +112,7 @@
                     mono = true
                     $("#dualbutton").text("Dual Types: Off")
                 }
+                cycle = 0;
             }
 
             function toggleCycle(){
@@ -222,30 +223,34 @@
 
                 .whiteimgoutline {
 
-                filter: drop-shadow(2px 2px 0 white) 
-                        drop-shadow(-2px -2px 0 white)
-                        drop-shadow(2px -2px 0 white)
-                        drop-shadow(-2px 2px 0 white);
+                    filter: drop-shadow(2px 2px 0 white) 
+                            drop-shadow(-2px -2px 0 white)
+                            drop-shadow(2px -2px 0 white)
+                            drop-shadow(-2px 2px 0 white);
 
-            }
+                }
 
-            .greenimgoutline {
+                .greenimgoutline {
 
-                filter: drop-shadow(2px 2px 0 rgb(0, 255, 0))
-                        drop-shadow(-2px -2px 0 rgb(0, 255, 0))
-                        drop-shadow(2px -2px 0 rgb(0, 255, 0))
-                        drop-shadow(-2px 2px 0 rgb(0, 255, 0));
+                    filter: drop-shadow(2px 2px 0 rgb(0, 255, 0))
+                            drop-shadow(-2px -2px 0 rgb(0, 255, 0))
+                            drop-shadow(2px -2px 0 rgb(0, 255, 0))
+                            drop-shadow(-2px 2px 0 rgb(0, 255, 0));
 
-            }
+                }
 
-            .redimgoutline {
+                .redimgoutline {
 
-                filter: drop-shadow(2px 2px 0 red) 
-                        drop-shadow(-2px -2px 0 red)
-                        drop-shadow(2px -2px 0 red)
-                        drop-shadow(-2px 2px 0 red);
+                    filter: drop-shadow(2px 2px 0 red) 
+                            drop-shadow(-2px -2px 0 red)
+                            drop-shadow(2px -2px 0 red)
+                            drop-shadow(-2px 2px 0 red);
 
-            }
+                }
+
+                .question {
+                    font-size: 72px;
+                }
 
             }
 
@@ -256,7 +261,7 @@
     <body>
 
         <div id="questiondiv" class="divc" style="margin-bottom: 24px; padding-top: 24px;">
-            <p style="display: inline;" id="question">A Type</p>
+            <p class="question" style="display: inline;" id="question">A Type</p>
             <p style="display: inline;" id="progress">(X/X)</p>
         </div>
 

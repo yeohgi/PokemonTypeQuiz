@@ -77,8 +77,8 @@ def askCycleDual(cycle):
     cycle = cycle % poss
     
     rinc = poss // len(tm.types)
-    
     row = cycle // rinc
+    
     col = cycle % (len(tm.types) - 1)
     
     if col >= row:
